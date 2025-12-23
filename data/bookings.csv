@@ -1,4 +1,3 @@
 name,movie_name,theater_name,date,time,tickets,total_price
-zura,Prisoners,Cavea,ორშაბათი,15:30,3,60
-elene,Prisoners,Cavea,ორშაბათი,15:30,3,60
-zura,Prisoners,Cavea,ორშაბათი,15:30,3,30
+
+1,Prisoners,Cavea,ორშაბათი,15:30,1,20

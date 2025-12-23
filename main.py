@@ -141,9 +141,32 @@ user_input = input("აირჩიეთ ფუნქცია ნომრი�
 
 if user_input == "2":
     print("\nსტატისტიკა - გაყიდული ბილეთების რაოდენობა ფილმების მიხედვით:")
-else:
-    
+    if not bookings:
+        print("ჯერ არ არის გაყიდული ბილეთები.")
+    else:
+        from collections import Counter
+        counts = Counter()
+        for b in bookings:
+            try:
+                counts[b.get_movie_name()] += int(b.get_tickets())
+            except Exception:
+                continue
 
-    
-    
+        for movie_name, cnt in counts.items():
+            print(f"{movie_name}: {cnt}")
+
+        # Plot bar chart
+        movie_names = list(counts.keys())
+        ticket_counts = list(counts.values())
+        plt.figure(figsize=(8, 6))
+        plt.bar(movie_names, ticket_counts, color='skyblue')
+        plt.xlabel('ფილმი')
+        plt.ylabel('გაყიდული ბილეთების რაოდენობა')
+        plt.title('გაყიდული ბილეთების რაოდენობა ფილმების მიხედვით')
+        plt.xticks(rotation=45, ha='right')
+        plt.tight_layout()
+        os.makedirs('data', exist_ok=True)
+        plt.savefig('data/tickets_by_movie.png', dpi=150)
+        plt.show()
+else:
     show_movies()
